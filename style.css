@@ -1,0 +1,438 @@
+/* ================================================================
+   RAJAN ALE — style.css
+
+   The look: warm paper, black ink, one red accent, hard shadows.
+   No glows, no blurry gradients, no glass — that's what made the
+   old version feel machine-made.
+
+   TO RECOLOUR THE WHOLE SITE: edit the :root block below.
+   ================================================================ */
+
+:root {
+  --paper: #f7f3ec;     /* page background — warm off-white */
+  --card: #fffdf8;      /* cards, slightly brighter than the page */
+  --ink: #14110f;       /* text and every outline */
+  --muted: #6b6357;     /* secondary text */
+  --accent: #d92b2b;    /* the one bold colour */
+  --radius: 14px;
+  --max-width: 1060px;
+
+  --sans: "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  --serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+  --mono: ui-monospace, Consolas, "Courier New", monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.container {
+  width: min(100% - 40px, var(--max-width));
+  margin-inline: auto;
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* ---------- TYPE ---------- */
+/* Headings are serif. That single choice does most of the work in
+   making the page feel written rather than generated. */
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(44px, 9vw, 84px); }
+h2 { font-size: clamp(28px, 4.5vw, 42px); }
+h3 { font-size: 21px; line-height: 1.2; }
+
+/* The highlighter stroke behind a word. Cheap, and very human. */
+.mark {
+  background-image: linear-gradient(transparent 64%, rgba(217, 43, 43, 0.28) 64%);
+  background-repeat: no-repeat;
+}
+
+.eyebrow, .label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.eyebrow { color: var(--muted); }
+.label { color: var(--accent); }
+
+.body-text {
+  color: #4a4238;
+  margin-top: 16px;
+  max-width: 48ch;
+  font-size: 16.5px;
+}
+
+/* ---------- NAV ---------- */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--paper);
+  border-bottom: 2px solid var(--ink);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+}
+
+.brand {
+  font-family: var(--serif);
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.brand span { color: var(--accent); }
+
+.links {
+  display: flex;
+  gap: 26px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.links a {
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s;
+}
+
+.links a:hover { border-bottom-color: var(--accent); }
+
+.burger {
+  display: none;
+  background: none;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  color: var(--ink);
+  font-size: 18px;
+  padding: 2px 10px;
+  cursor: pointer;
+}
+
+/* ---------- BUTTONS ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+/* Pressing the button moves it into its own shadow.
+   This is a real-world trick: the page feels physical. */
+.btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-ghost { background: var(--card); color: var(--ink); }
+
+/* ---------- HERO ---------- */
+.hero { padding: 88px 0 72px; }
+
+.lede {
+  margin-top: 24px;
+  font-size: 18px;
+  color: #3f382f;
+  max-width: 52ch;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.stats {
+  display: flex;
+  gap: 52px;
+  flex-wrap: wrap;
+  margin-top: 60px;
+  padding-top: 26px;
+  border-top: 2px dashed rgba(20, 17, 15, 0.3);
+}
+
+.stats div { display: flex; flex-direction: column; }
+
+.stats strong {
+  font-family: var(--serif);
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.stats span {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ---------- SECTIONS ---------- */
+section {
+  padding: 68px 0;
+  border-top: 2px dashed rgba(20, 17, 15, 0.22);
+}
+
+.section-head { margin-bottom: 34px; }
+
+/* ---------- VIDEO CARDS ---------- */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 var(--ink);
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 9px 9px 0 var(--ink);
+}
+
+/* Flat colour block instead of a gradient — gradients are the
+   single biggest "made by AI" signal on a portfolio. */
+.thumb {
+  display: block;
+  aspect-ratio: 4 / 5;      /* portrait, because these are Shorts */
+  background: var(--c, #e8e0d2);
+  border-bottom: 2px solid var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+
+/* The real YouTube thumbnail, cropped to fill the card.
+   object-fit: cover means it fills the box without squashing. */
+.thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.card:hover .thumb img { transform: scale(1.04); }
+
+.ep {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+
+.views {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.card-body { padding: 16px 18px 20px; }
+
+.card-body h3 { font-size: 17px; line-height: 1.25; }
+
+.card-body .meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* ---------- ABOUT ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 52px;
+  align-items: start;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 26px;
+}
+
+.skills li {
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 4px 14px;
+}
+
+.photo {
+  aspect-ratio: 1 / 1;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 var(--ink);
+  background: repeating-linear-gradient(
+    45deg,
+    #efe7d8 0 12px,
+    #f7f3ec 12px 24px
+  );
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transform: rotate(-1.5deg);   /* tiny tilt, hand-placed feel */
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* ---------- CONTACT ---------- */
+.contact-box {
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 8px 8px 0 var(--ink);
+  padding: 46px;
+}
+
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.contact-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.contact-links a:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.contact-links .icon { color: var(--accent); }
+
+/* ---------- FOOTER ---------- */
+footer {
+  border-top: 2px solid var(--ink);
+  padding: 24px 0;
+  margin-top: 40px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ---------- PHONES ---------- */
+@media (max-width: 760px) {
+  .hero { padding: 60px 0 52px; }
+  section { padding: 52px 0; }
+  .stats { gap: 30px; margin-top: 42px; }
+
+  .links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--paper);
+    border-bottom: 2px solid var(--ink);
+    padding: 4px 20px 12px;
+  }
+
+  .links.open { display: flex; }
+  .links a { padding: 12px 0; border-bottom: 1px solid rgba(20, 17, 15, 0.15); }
+  .links a:last-child { border-bottom: none; }
+
+  .burger { display: block; }
+
+  .about-grid { grid-template-columns: 1fr; gap: 36px; }
+  .photo { max-width: 300px; transform: rotate(0deg); }
+  .contact-box { padding: 30px 22px; }
+
+  /* Shadow slightly smaller on small screens so it doesn't clip */
+  .card { box-shadow: 4px 4px 0 var(--ink); }
+  .contact-box { box-shadow: 5px 5px 0 var(--ink); }
+}

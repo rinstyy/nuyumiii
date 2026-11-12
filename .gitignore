@@ -1,0 +1,7 @@
+# Files the browser or OS creates that should never be published
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editor settings
+.vscode/
